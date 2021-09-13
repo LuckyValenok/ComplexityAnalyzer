@@ -102,15 +102,15 @@ fun bubbleSort(arr: IntArray): IntArray {
     return arr
 }
 
-fun quickSort(items: IntArray): IntArray {
-    if (items.count() < 2) {
-        return items
+fun quickSort(arr: IntArray): IntArray {
+    if (arr.count() < 2) {
+        return arr
     }
 
-    val pivot = items[items.count() / 2]
-    val equal = items.filter { it == pivot }
-    val less = items.filter { it < pivot }
-    val greater = items.filter { it > pivot }
+    val pivot = arr[arr.count() / 2]
+    val equal = arr.filter { it == pivot }
+    val less = arr.filter { it < pivot }
+    val greater = arr.filter { it > pivot }
 
     return quickSort(less.toIntArray()) + equal + quickSort(greater.toIntArray())
 }
