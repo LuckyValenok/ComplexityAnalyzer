@@ -1,3 +1,5 @@
+package net.luckyvalenok.analyzer
+
 import com.github.doyaaaaaken.kotlincsv.dsl.csvWriter
 import java.util.function.Function
 import kotlin.math.pow
