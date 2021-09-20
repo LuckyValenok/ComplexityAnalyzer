@@ -48,7 +48,7 @@
 
 12. Классический алгоритм быстрого возведения в степень
 
-![](https://sun9-29.userapi.com/impg/3M0fWqpLHQwFzcmT3tbLuJ2CulSVxdCkJF6u4g/TVSh_KDfxC0.jpg?size=1143x710&quality=96&sign=caa8d0a57cfa9458637c4b03fac4bae1&type=album)
+![](https://sun9-61.userapi.com/impg/vTQRXeseD1y-D5BQGGQ2RU0sq3hg77OYt0bkFQ/yKNb2daGs1U.jpg?size=1145x711&quality=96&sign=345bdaf611992e615f5fd791831c1a7f&type=album)
 
 13. Обычное матричное произведение матриц A (n x n) и B (n x n)
 
