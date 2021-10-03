@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-    testImplementation(kotlin("test"))
+    testImplementation("org.jetbrains.kotlin:kotlin-test:1.5.31")
     implementation("com.github.doyaaaaaken:kotlin-csv-jvm:1.1.0")
 }
 
@@ -22,9 +22,9 @@ tasks.test {
 }
 
 tasks.withType<KotlinCompile>() {
-    kotlinOptions.jvmTarget = "13"
+    kotlinOptions.jvmTarget = "16"
 }
 
 application {
-    mainClass.set("MainKt")
+    mainClass.set("Lab1")
 }
