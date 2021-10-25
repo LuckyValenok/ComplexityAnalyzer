@@ -90,23 +90,23 @@ fun main() {
         }
     }
     // Сортировка Шелла О(n * log^2 n)
-    analyzeWithArray("13", 2000, 5) {
+    analyzeWithArray("13", 20000, 5) {
         shellSort(it)
     }
-    analyze("14", 2000, 5, { generatePositiveVector(it, 100000) }) {
+    analyze("14", 20000, 5, { generatePositiveVector(it, 100000) }) {
         countSort(it, it.size)
     }
-    analyze("15", 2000, 5, { Random.nextInt(1, Int.MAX_VALUE) }) {
+    analyze("15", 20000, 5, { Random.nextInt(1, Int.MAX_VALUE) }) {
         factorsOf(it)
     }
     analyze("16", 10, 1, { generateRandomString(it) }) {
         permutation(it)
     }
-    analyzeWithArray("17", 2000, 5) {
+    analyzeWithArray("17", 20000, 5) {
         selectionSort(it)
     }
     val list = SkipList<Int>()
-    analyze("18", 2000, 5, { Random.nextInt() }) {
+    analyze("18", 20000, 5, { Random.nextInt() }) {
         list.insert(it)
     }
 }
@@ -125,31 +125,22 @@ fun <T> analyze(name: String, maxCount: Int, countRepeatable: Int, function: Fun
         var result = 0L
         for (j in 1 until countRepeatable + 1) {
             val arg = function.apply(i)
-            val start = System.nanoTime()
-            consumer.accept(arg)
-            val stop = System.nanoTime()
-            result += stop - start
+            val time = timer { consumer.accept(arg) }
+            if (result == 0L || result > time) {
+                result = time
+            }
         }
         result /= countRepeatable
         lists += listOf(i.toString(), result.toString())
     }
-    for (b in 0 until maxCount) {
-        val list = lists[b]
-        val prevList = if (b == 0) {
-            lists[b + 2]
-        } else {
-            lists[b - 1]
-        }
-        val nextList = if (b == maxCount - 1) {
-            lists[b - 2]
-        } else {
-            lists[b + 1]
-        }
-        if (list[1].toDouble() > (prevList[1].toDouble() + nextList[1].toDouble()) / 2) {
-            lists[b] = listOf((b + 1).toString(), ((prevList[1].toLong() + nextList[1].toLong()) / 2).toString())
-        }
-    }
     csvWriter().writeAll(lists, "$name.csv", false)
+}
+
+fun timer(method: Runnable): Long {
+    var time = System.nanoTime()
+    method.run()
+    time = System.nanoTime() - time
+    return time / 100
 }
 
 fun generateVector(size: Int): IntArray {
